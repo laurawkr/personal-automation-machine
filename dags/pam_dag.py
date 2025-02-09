@@ -32,7 +32,7 @@ with DAG(
         run_for_user(user_name, credentials_json)
 
     # List of user names to create tasks for:
-    user_list = ["business-lead", "finance", "marketing", "product-lead", "engineering", "labware-engineer"]
+    user_list = ["business-lead", "finance", "marketing", "product-lead", "engineering"]
 
     tasks = {}
     for user in user_list:

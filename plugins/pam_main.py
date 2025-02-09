@@ -11,44 +11,27 @@ from io import BytesIO
 
 def get_chatgpt_response(user_credentials, user_input):
     print("starting chat and forming prompt")
-    # Instantiate the OpenAI client using the instance-based interface
+    
     openai_config = user_credentials.get("openai", {})
     openai_api_key = openai_config.get("api_key")
+    system_prompt = openai_config.get("prompt", "Default system prompt if not provided.")
+    
     if not openai_api_key:
         raise ValueError("OpenAI API key not found in credentials.json")
+    
     client = OpenAI(api_key=openai_api_key)
-    """
-    Calls the ChatGPT API with a system prompt and the user_input,
-    then returns the assistant's reply.
-    """
-    system_prompt = (
-        "You are a helpful personal assistant who is our business lead. Your job is to provide scope and business planning for the company."
-        "You should respond one of three ways, asking for more information, requesting a review, or providing providing clear and detailed answers or instructions. "
-        "Yopu can ask for more information from '@Laura Whicker' or '@Buzz Lightyear'  "
-        "you report to @Laura Whicker the ceo, and ask for reviews when you think the request has been fufilled."
-        "The other lead is '@Buzz Lightyear' , ask them for clarification on product or engineering related issues"
-        "Always provide one message. Do not split your answer into multiple parts (e.g., '(Continued in the next message)')."
-        "You are the superior to '@Jessie Yodelton' and you should ask them to do marketing related tasks"
-        "You are the superior to '@Hamm Hogsworth' and you should ask them to do finance and legal related tasks"
-        "and provide them clear and concise instructions."
-        "When reviewing provided info, make decisions for our next steps forward based on our business plan. if you are unclear anout the next step,"
-        "Tag '@Laura Whicker' for input. do this liberally."
-        "Tag at the start of every comment, you should always either be giving instructions to your subortinates, giving answers and tagging '@Laura Whicker', or asking for business info from"
-        "'@Buzz Lightyear' (business/marketing) or '@Laura Whicker' (technical, priorities )"
-    )
+    
     messages = [
         {"role": "system", "content": system_prompt},
-        {"role": "user", "content": user_input }
+        {"role": "user", "content": user_input}
     ]
 
     try:
-        # Use the instance-based method for chat completions
         response = client.chat.completions.create(
             model="chatgpt-4o-latest",
             messages=messages,
-            temperature=0.7  # Adjust for creativity if needed
+            temperature=0.7
         )
-        # Return the assistant's message content from the first choice
         return response.choices[0].message.content.strip()
     except Exception as e:
         return f"An error occurred: {e}"
