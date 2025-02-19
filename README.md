@@ -1,7 +1,7 @@
 # Personal-Automation-Machine
-Pam! Pam! Pam!
+"Pam! Pam! Pam!"
 
-An Airflow based gpt assitant. Currently set up to act as a Jira User, with the purpose of providing tailored asistance and chats via jira comments. 
+PAM is an Airflow based gpt assitant. It is set up to act as a Jira User providing tailored asistance and chats via jira comments. 
 
 ## Built With
 * [![Docker][docker-logo]][docker-url]
