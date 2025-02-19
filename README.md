@@ -11,13 +11,14 @@ An Airflow based gpt assitant. Currently set up to act as a Jira User, with the 
 
 ### Instalation
 
-1.Install Requirements
+1. Install Requirements 
    ```sh
    pip install -r requirements.txt
    ```
-2.Install Docker Desktop
+2. Install Docker Desktop
    [Docker Download](https://www.docker.com/products/docker-desktop/)
-3.Build Docker Container
+   
+3. Build Docker Container
    ```sh
    docker compose up -d --build
    ```
