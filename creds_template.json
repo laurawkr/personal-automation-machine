@@ -1,0 +1,13 @@
+{
+    "assitant-name": {
+      "openai": {
+        "api_key": "copy your openai api key here",
+        "system_prompt": "Write your instructions/guidlines for this assistant here",
+      },
+        "jira": {
+        "server": "copy your Jira Server Here",
+        "user": "Enter the email you used to set up a Jira account for your assistant",
+        "api_token": "copy your Jira api key here"
+        }
+    }
+}
